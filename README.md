@@ -1,6 +1,6 @@
 # cowptain
 
-![logo](cowptain4.svg)
+![](https://raw.githubusercontent.com/zuczekgnojak/cowptain/main/images/cowptain4.svg)
 
 *MUUUUUU*
 
