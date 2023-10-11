@@ -1,2 +1,7 @@
 # cowptain
-python web framework
+
+![logo](cowptain4.svg)
+
+*MUUUUUU*
+
+python web nanoframework
