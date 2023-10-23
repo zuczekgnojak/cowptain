@@ -19,12 +19,12 @@ jobs:
       - name: build image
         run: make build python_version=${{ matrix.version }}
       - name: save as file
-        run: docker save cowptain:${{ matrix.version }} > cowptain-${{ matrix.version }}.tar
+        run: docker save cowptain:${{ matrix.version }} > /tmp/cowptain-${{ matrix.version }}.tar
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: cowptain-${{ matrix.version }}
-          path: cowptain-${{ matrix.version }}.tar
+          path: /tmp/cowptain-${{ matrix.version }}.tar
 
   lint:
     name: ${{ matrix.linter }}
@@ -39,8 +39,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: cowptain-3.10
-          path: cowptain-3.10.tar
+          path: /tmp
       - name: load image
-        run: docker load --input cowptain-3.10.tar
+        run: docker load --input /tmp/cowptain-3.10.tar
       - name: lint
         run: docker run --rm cowptain:3.10 make ${{ matrix.linter }}
