@@ -1,10 +1,4 @@
-import subprocess
-from time import sleep
-import unittest
-import subprocess
-
 import requests
-from time import sleep
 
 
 class Mixin:
@@ -16,7 +10,7 @@ class Mixin:
 
     def test_init(self):
         self.assertTrue(True)
-    
+
     def test_ok(self):
         r = requests.get(self.url("/"))
         self.check(r)
@@ -32,7 +26,7 @@ class Mixin:
         }
         r = requests.get(self.url("/test-headers"), headers=headers)
         self.check(r)
-    
+
     def test_cookies(self):
         cookies = {
             "cookie1": "val1",
@@ -48,11 +42,13 @@ class Mixin:
     def test_vars(self):
         r = requests.get(self.url("/test-vars/val1/bar/val2"))
         self.check(r)
-    
+
     def test_query(self):
-        r = requests.get(self.url("/test-query?foo=bar&baz=gaz&other=&another"))
+        r = requests.get(
+            self.url("/test-query?foo=bar&baz=gaz&other=&another")
+        )
         self.check(r)
-    
+
     def test_input(self):
         r = requests.post(self.url("/test-input"), data="thisIsPayload")
         self.check(r)
@@ -72,3 +68,4 @@ class Mixin:
             },
             data="this Is SoMe DAATA",
         )
+        self.check(r)

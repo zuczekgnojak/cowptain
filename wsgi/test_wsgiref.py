@@ -1,10 +1,7 @@
 import subprocess
-from time import sleep
 import unittest
-import subprocess
-
-import requests
 from time import sleep
+
 from wsgi.tests import Mixin
 
 
@@ -24,7 +21,6 @@ class TestWsgiRef(Mixin, unittest.TestCase):
 
         sleep(1)
 
-    
     @classmethod
     def tearDownClass(cls):
         cls.server.terminate()

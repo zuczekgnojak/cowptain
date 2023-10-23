@@ -17,7 +17,6 @@ class Application:
         self._root.add(route)
 
     def __call__(self, environ: dict, start_response: Callable) -> list[bytes]:
-        print(environ)
         path = self._get_path(environ)
         route = self._find_route(path)
         request = self._prepare_request(environ, route)

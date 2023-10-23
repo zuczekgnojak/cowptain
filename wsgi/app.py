@@ -1,6 +1,15 @@
 from logging import getLogger
 
-from cowptain import Application, Request, Path, Response, Method, View, Status, Headers
+from cowptain import (
+    Application,
+    Headers,
+    Method,
+    Path,
+    Request,
+    Response,
+    Status,
+    View,
+)
 
 logger = getLogger(__name__)
 
@@ -27,6 +36,9 @@ class TestView(View):
         except AssertionError:
             logger.exception("test failed")
             return TestFailed()
+
+    def test(self, request):
+        pass
 
 
 class OkView(TestView):
@@ -74,7 +86,6 @@ class TestQuery(TestView):
 
 class TestInput(TestView):
     def test(self, request):
-        
         body = request.input.read()
         assert body == b"thisIsPayload"
 
@@ -122,5 +133,5 @@ app.add_route("/test-all/<some>/value/<foo>/<bar>", TestAll)
 if __name__ == "__main__":
     from wsgiref.simple_server import make_server
 
-    with make_server('127.0.0.1', 8001, app) as server:
+    with make_server("127.0.0.1", 8001, app) as server:
         server.serve_forever()

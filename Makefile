@@ -49,7 +49,7 @@ flake8:
 
 .PHONY: isort
 isort:
-	python -m isort --check $(LINT_DIRS)
+	python -m isort --check --profile black --line-length 79 $(LINT_DIRS)
 
 .PHONY: pylint
 pylint:

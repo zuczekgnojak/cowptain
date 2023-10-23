@@ -1,10 +1,7 @@
 import subprocess
-from time import sleep
 import unittest
-import subprocess
-
-import requests
 from time import sleep
+
 from wsgi.tests import Mixin
 
 
@@ -17,7 +14,12 @@ class TestUwsgi(Mixin, unittest.TestCase):
         cls.server = subprocess.Popen(
             [
                 "/usr/local/bin/uwsgi",
-                "--http", "127.0.0.1:8003", "--wsgi-file", "wsgi/app.py", "--callable", "app",
+                "--http",
+                "127.0.0.1:8003",
+                "--wsgi-file",
+                "wsgi/app.py",
+                "--callable",
+                "app",
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
@@ -25,7 +27,6 @@ class TestUwsgi(Mixin, unittest.TestCase):
 
         sleep(1)
 
-    
     @classmethod
     def tearDownClass(cls):
         cls.server.terminate()
