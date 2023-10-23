@@ -3,11 +3,11 @@ python_version?=3.10
 
 .PHONY: build
 build:
-	echo $(python_version)
 	docker build --build-arg="PYTHON_VERSION=$(python_version)" -t cowptain:$(python_version) .
 
 .PHONY: run
-run: docker run -it --rm cowptain:$(python_version) bash
+run:
+	docker run -it --rm cowptain:$(python_version) bash
 
 .PHONY: build-dev
 build-dev:
