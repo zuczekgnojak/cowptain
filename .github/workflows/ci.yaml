@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cowptain-${{ matrix.version }}
-          path: cowptain-${{ matrix.version }}
+          path: cowptain-${{ matrix.version }}.tar
 
   lint:
     name: ${{ matrix.linter }}
