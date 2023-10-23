@@ -7,9 +7,21 @@ on:
 
 jobs:
   build:
+    name: build ${{ matrix.version }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["3.10", "3.11", "3.12"]
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: check docker
-        run: docker ps -a
+      - name: build image
+        run: make build python_version=${{ matrix.version }}
+      - name: save as file
+        run: docker save cowptain:${{ matrix.version }} > cowptain-${{ matrix.version }}.tar
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: cowptain-${{ matrix.version }}
+          path: cowptain-${{ matrix.version }}

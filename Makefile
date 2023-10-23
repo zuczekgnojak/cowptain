@@ -1,11 +1,13 @@
 LINT_DIRS := unit wsgi src
+python_version?=3.10
 
 .PHONY: build
 build:
-	docker build --build-arg="PYTHON_VERSION=3.10" -t cowptain .
+	echo $(python_version)
+	docker build --build-arg="PYTHON_VERSION=$(python_version)" -t cowptain:$(python_version) .
 
 .PHONY: run
-run: docker run -it --rm cowptain bash
+run: docker run -it --rm cowptain:$(python_version) bash
 
 .PHONY: build-dev
 build-dev:
