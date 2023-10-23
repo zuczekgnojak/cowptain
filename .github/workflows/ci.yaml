@@ -25,3 +25,21 @@ jobs:
         with:
           name: cowptain-${{ matrix.version }}
           path: cowptain-${{ matrix.version }}
+
+  lint:
+    name: ${{ matrix.linter }}
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        linter: ["black", "flake8", "isort", "pylint"]
+    steps:
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: cowptain-3.10
+          path: cowptain-3.10.tar
+      - name: load image
+        run: docker load --input cowptain-3.10.tar
+      - name: lint
+        run: docker run --rm cowptain:3.10 make ${{ matrix.linter }}
