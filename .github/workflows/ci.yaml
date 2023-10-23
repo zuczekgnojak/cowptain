@@ -28,6 +28,7 @@ jobs:
 
   lint:
     name: ${{ matrix.linter }}
+    runs-on: ubuntu-latest
     needs: build
     strategy:
       fail-fast: false
