@@ -1,12 +1,12 @@
 import subprocess
+import sys
 import unittest
 from time import sleep
 
 from wsgi.tests import Mixin
 
-import sys
 
-@unittest.skipIf(sys.version_info > (3,11), "uwsgi not working on python 3.12")
+@unittest.skipIf(sys.version_info > (3, 11), "uwsgi not working no >=3.12")
 class TestUwsgi(Mixin, unittest.TestCase):
     PORT = 8003
     BASE_URL = "http://127.0.0.1"
