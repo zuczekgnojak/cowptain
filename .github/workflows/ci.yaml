@@ -45,3 +45,14 @@ jobs:
     uses: zuczekgnojak/cowptain/.github/workflows/test.yaml@main
     with:
       python-version: "3.11"
+
+  build-3-12:
+    uses: zuczekgnojak/cowptain/.github/workflows/build.yaml@main
+    with:
+      python-version: "3.12"
+
+  test-3-12:
+    needs: build-3-12
+    uses: zuczekgnojak/cowptain/.github/workflows/test.yaml@main
+    with:
+      python-version: "3.12"
