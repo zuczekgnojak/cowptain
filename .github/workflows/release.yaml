@@ -13,5 +13,5 @@ jobs:
       - run: python3 -m build
       - uses: actions/upload-artifact@v3
         with:
-          name: build
-          path: build
+          name: dist
+          path: dist
