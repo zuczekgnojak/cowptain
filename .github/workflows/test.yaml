@@ -20,3 +20,22 @@ jobs:
         with:
           name: cowptain-${{ inputs.python-version }}
           path: /tmp/cowptain-${{ inputs.python-version }}.tar
+
+  test:
+    name: ${{ matrix.test }}
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        test: ["unit", "wsgiref", "gunicorn", "uwsgi"]
+    steps:
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: cowptain-${{ inputs.python-version }}
+          path: /tmp
+      - name: load image
+        run: docker load --input /tmp/cowptain-${{ inputs.python-version }}.tar
+      - name: test
+        run: docker run --rm cowptain:${{ inputs.python-version }} make ${{ matrix.test }}
