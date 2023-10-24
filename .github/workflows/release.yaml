@@ -5,8 +5,13 @@ on:
     types: [created]
 
 jobs:
-  publishing:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: just chillin
-        run: echo foo
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install --upgrade build
+      - run: python3 -m build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
