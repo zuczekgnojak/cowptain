@@ -6,21 +6,6 @@ on:
         type: string
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: build image
-        run: make build python_version=${{ inputs.python-version }}
-      - name: save as file
-        run: docker save cowptain:${{ inputs.python-version }} > /tmp/cowptain-${{ inputs.python-version }}.tar
-      - name: upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: cowptain-${{ inputs.python-version }}
-          path: /tmp/cowptain-${{ inputs.python-version }}.tar
-
   test:
     name: ${{ matrix.test }}
     runs-on: ubuntu-latest
