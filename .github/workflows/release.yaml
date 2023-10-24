@@ -1,0 +1,12 @@
+name: release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publishing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: just chillin
+        run: echo foo

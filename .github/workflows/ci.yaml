@@ -1,11 +1,10 @@
 name: ci
 
 on:
+  pull_request:
   push:
     branches:
       - "main"
-    tags:
-      - "*"
 
 jobs:
   build-3-10:
@@ -58,10 +57,3 @@ jobs:
     uses: zuczekgnojak/cowptain/.github/workflows/test.yaml@main
     with:
       python-version: "3.12"
-
-  publishing:
-    needs: [test-3-10, test-3-11, test-3-12, lint]
-    runs-on: ubuntu-latest
-    steps:
-      - name: just chillin
-        run: echo foo
