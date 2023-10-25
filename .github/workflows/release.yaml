@@ -30,6 +30,7 @@ jobs:
   update-release:
     needs: build
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - uses: actions/download-artifact@v3
         with:
