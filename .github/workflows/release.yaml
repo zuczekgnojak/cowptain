@@ -41,7 +41,7 @@ jobs:
           do
             filename=$(basename ${f})
             echo $filename
-            curl -L
+            curl -L \
               -X POST \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
