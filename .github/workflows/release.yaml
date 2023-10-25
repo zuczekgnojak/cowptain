@@ -36,13 +36,6 @@ jobs:
         with:
           name: dist
           path: dist
-      - run: ls dist
-      - run: echo ${{ github }}
-      - run: echo ${{ github.event }}
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - run: |
           for f in dist/*
           do
