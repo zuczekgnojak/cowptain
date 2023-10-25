@@ -26,6 +26,9 @@ jobs:
           path: dist
       - run: python3 -m pip install --upgrade twine
       - run: python3 -m twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.pypi_token }}
 
   update-release:
     needs: build
