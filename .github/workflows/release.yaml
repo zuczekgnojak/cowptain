@@ -53,3 +53,17 @@ jobs:
               "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets?name=${filename}" \
               --data-binary "@dist/${filename}"
           done
+
+  trigger-docs:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - run: |
+          curl -X POST \
+            -d "branches=main" \
+            -d "token=${{ secrets.RTFD_TOKEN }}" \
+            ${{ secrets.RTFD_URL }}
