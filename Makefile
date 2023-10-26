@@ -54,3 +54,7 @@ isort:
 .PHONY: pylint
 pylint:
 	python -m pylint --errors-only $(LINT_DIRS)
+
+.PHONY: mypy
+mypy:
+	python -m mypy $(LINT_DIRS)

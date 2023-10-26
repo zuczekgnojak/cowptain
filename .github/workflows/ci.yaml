@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        linter: ["black", "flake8", "isort", "pylint"]
+        linter: ["black", "flake8", "isort", "pylint", "mypy"]
     steps:
       - name: download artifacts
         uses: actions/download-artifact@v3
