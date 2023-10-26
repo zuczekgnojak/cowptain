@@ -1,0 +1,6 @@
+site_name: cowptain
+site_url: https://cowptain.rtfd.io
+nav:
+  - Home: index.md
+  - API: api.md
+theme: readthedocs
