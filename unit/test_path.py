@@ -24,15 +24,6 @@ class TestPath(unittest.TestCase):
         self.assertEqual(p1, p2)
         self.assertEqual(p1, p3)
 
-    def test_startswith(self):
-        p1 = Path("<value>/path")
-        p2 = Path("/<value>/path/")
-        p3 = Path("/path/<value>")
-
-        self.assertTrue(p1.startswith("<"))
-        self.assertTrue(p2.startswith("<"))
-        self.assertFalse(p3.startswith("<"))
-
     def test_indexing(self):
         p = Path("/some/path/somewhere/")
         p0 = Path("some")

@@ -4,7 +4,7 @@ from .errors import CowptainError
 from .headers import Cookies, Headers
 from .path import Path, Query, Vars
 from .re import Input, Request, Response
-from .view import AutoView, View
+from .view import View
 
 __all__ = [
     "Application",
@@ -20,5 +20,4 @@ __all__ = [
     "Status",
     "Input",
     "View",
-    "AutoView",
 ]

@@ -12,7 +12,7 @@ class Path:
         if path:
             self._parts = path.split("/")
 
-    def __getitem__(self, index: int | slice) -> str:
+    def __getitem__(self, index: int | slice) -> "Path":
         path = self._parts[index]
 
         if isinstance(index, slice):
@@ -41,19 +41,16 @@ class Path:
         arg = self.__str__()
         return f'Path("{arg}")'
 
-    def startswith(self, s: str) -> bool:
-        return "/".join(self._parts).startswith(s)
-
 
 class Vars(ReadOnlyDict):
     def __init__(self, path: Path, pattern: Path):
-        path = str(path)
-        pattern = str(pattern)
+        strpath = str(path)
+        strpattern = str(pattern)
 
-        pattern = pattern.replace("<", "(?P<")
-        pattern = pattern.replace(">", ">[a-zA-Z0-9]+)")
+        strpattern = strpattern.replace("<", "(?P<")
+        strpattern = strpattern.replace(">", ">[a-zA-Z0-9]+)")
 
-        match = fullmatch(pattern, path)
+        match = fullmatch(strpattern, strpath)
         if not match:
             raise CowptainError("shouldn't happen")
 

@@ -58,12 +58,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - run: |
+          TAG=${GITHUB_REF/refs\/tags\//}
+          echo $TAG
           curl -X POST \
-            -d "branches=${{ github.ref }}" \
+            -d "branches=${TAG}" \
             -d "token=${{ secrets.RTFD_TOKEN }}" \
             ${{ secrets.RTFD_URL }}
+        env:
+          GITHUB_REF: ${{ github.ref }}

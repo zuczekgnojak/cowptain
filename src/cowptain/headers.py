@@ -14,7 +14,6 @@ class Headers(ReadOnlyDict):
         data = list(headers.items())
         keys = map(itemgetter(0), data)
         values = map(itemgetter(1), data)
-        keys = headers.keys()
         keys = map(methodcaller("replace", "_", "-"), keys)
         keys = map(methodcaller("title"), keys)
         keys = map(methodcaller("removeprefix", "Http-"), keys)
@@ -29,8 +28,7 @@ class Cookies(ReadOnlyDict):
             super().__init__()
             return
 
-        cookies = cookie_string.split(";")
-        cookies = map(methodcaller("strip"), cookies)
+        cookies = map(methodcaller("strip"), cookie_string.split(";"))
         data = dict(map(lambda c: c.split("="), cookies))
 
         super().__init__(data)

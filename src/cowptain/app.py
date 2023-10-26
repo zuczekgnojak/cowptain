@@ -11,9 +11,7 @@ class Application:
         self._root = Node()
 
     def add_route(self, path: str, view: type[View]):
-        path = Path(path)
-        view = view(self)
-        route = Route(path, view)
+        route = Route(Path(path), view(self))
         self._root.add(route)
 
     def __call__(self, environ: dict, start_response: Callable) -> list[bytes]:

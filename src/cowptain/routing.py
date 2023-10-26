@@ -32,8 +32,8 @@ class Node:
             self.route = route
             return
 
-        part, rest = path[:1], path[1:]
-        if part.startswith("<"):
+        part, rest = str(path[:1]), path[1:]
+        if part.strip("/").startswith("<"):
             part = "*"
 
         self.paths[str(part)]._inner_add(route, rest)
