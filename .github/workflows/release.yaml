@@ -64,6 +64,6 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - run: |
           curl -X POST \
-            -d "branches=main" \
+            -d "branches=${{ github.ref }}" \
             -d "token=${{ secrets.RTFD_TOKEN }}" \
             ${{ secrets.RTFD_URL }}
