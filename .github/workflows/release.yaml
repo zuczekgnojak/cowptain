@@ -53,17 +53,3 @@ jobs:
               "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets?name=${filename}" \
               --data-binary "@dist/${filename}"
           done
-
-  trigger-docs:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          TAG=${GITHUB_REF/refs\/tags\//}
-          echo $TAG
-          curl -X POST \
-            -d "branches=${TAG}" \
-            -d "token=${{ secrets.RTFD_TOKEN }}" \
-            ${{ secrets.RTFD_URL }}
-        env:
-          GITHUB_REF: ${{ github.ref }}
